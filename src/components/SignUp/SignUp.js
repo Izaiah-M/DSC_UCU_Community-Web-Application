@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { Alert, AlertTitle } from "@mui/material";
+import { useState } from "react";
 import { SignUpForm } from "./SignUpForm/SignUpForm";
 
 export const SignUp = ({ setMembers, members }) => {
@@ -78,7 +79,13 @@ export const SignUp = ({ setMembers, members }) => {
 
   return (
     <div>
-      {/* TODO: using the submitted form state, create an Alert message */}
+      {/* TODO: make alert message appear for a certain period of time */}
+      {formSubmitted && (
+        <Alert severity="success">
+          <AlertTitle>Success</AlertTitle>
+          Signed Up <strong>successfully!</strong>
+        </Alert>
+      )}
       <SignUpForm
         name={name}
         setName={setname}
