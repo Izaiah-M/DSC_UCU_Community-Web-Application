@@ -6,10 +6,10 @@ input {
   border-radius: 5px;
 }
 
-input:hover {
+/* input:hover {
   border: 1px rgba(22, 20, 156, 0.377) solid;
   transition: 0.4s;
-}
+} */
 
 input:focus {
   outline: none;
