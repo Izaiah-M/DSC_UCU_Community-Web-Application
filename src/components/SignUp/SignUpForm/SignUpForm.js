@@ -24,15 +24,18 @@ export const SignUpForm = ({
           type="tel"
           value={phone}
           onChange={setPhone}
-          placeholder="Phone Number"
+          placeholder="075XXXXXXX"
+          pattern="^(?:\+256\s\d{9}|\d{10})$"
           autoComplete="tel"
           required
         />
+
         <input
-          type="email"
+          type="text"
           value={email}
           onChange={setEmail}
-          placeholder="Email"
+          placeholder="example@mail.com"
+          pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
           autoComplete="email"
           required
         />
