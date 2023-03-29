@@ -21,7 +21,7 @@ JavaScript
 Clone the repository to your local machine.
 bash
 Copy code
-git clone https://github.com/DSC-UCU/DSC_UCU_Community.git
+git clone https://github.com/Izaiah-M/DSC_UCU_Community-Web-Application.git
 Install the required dependencies.
 
 ## Contributing
