@@ -22,7 +22,9 @@ function App() {
   return (
     <div className="App">
       <header>Hey Google!</header>
-      <SignUp setMembers={setMembers} members={members} />
+      <div className="sign-up">
+        <SignUp setMembers={setMembers} members={members} />
+      </div>
     </div>
   );
 }
