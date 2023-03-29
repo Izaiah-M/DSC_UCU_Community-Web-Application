@@ -43,6 +43,8 @@ export const SignUpForm = ({
           value={password}
           onChange={setPassword}
           placeholder="password"
+          minLength="8"
+          maxLength="15"
           required
         />
 
