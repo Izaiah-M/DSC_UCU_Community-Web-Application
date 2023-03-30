@@ -10,9 +10,13 @@ export const SignUpForm = ({
   setPhone,
   password,
   setPassword,
+  loading,
 }) => {
   return (
     <div className="form-card">
+      <div>
+        <h2>Sign Up</h2>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="row">
           <input
@@ -59,9 +63,17 @@ export const SignUpForm = ({
           />
         </div>
         <div className="row">
-          <input type="submit" value="Sign Up" className="btn" />
+          <input
+            type="submit"
+            value="Sign Up"
+            className="btn"
+            disabled={loading}
+          />
         </div>
       </form>
+      <div>
+        <p>Already have an account? log in</p>
+      </div>
     </div>
   );
 };
