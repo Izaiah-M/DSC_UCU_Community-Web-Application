@@ -19,10 +19,7 @@ export const SignUp = ({ setMembers, members }) => {
     phone: "",
   });
 
-  // object destructuring
-
   //   setting the different form fields
-
   const setname = ({ target }) => {
     setName(target.value);
     setNewMember({
@@ -68,7 +65,7 @@ export const SignUp = ({ setMembers, members }) => {
         // Adding the user to firestore
         try {
           const docRef = await addDoc(collection(db, "users"), newMember);
-          setFormSubmitted(true);
+          //   setFormSubmitted(true);
 
           console.log(docRef);
         } catch (error) {
