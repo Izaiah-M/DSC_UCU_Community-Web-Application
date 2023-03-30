@@ -2,7 +2,7 @@ import { Alert, AlertTitle } from "@mui/material";
 import { useState } from "react";
 import { SignUpForm } from "./SignUpForm/SignUpForm";
 import { auth, db } from "../../utils/Firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 
 export const SignUp = () => {
@@ -54,26 +54,32 @@ export const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // adding our newMember to our firebase db
+    // Create new user
     await createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         setLoading(true);
-        // signed In
+        // Signed up
         const user = userCredential.user;
         console.log(user);
 
-        // Adding the user to firestore
-        try {
-          const docRef = await addDoc(collection(db, "users"), newMember);
-          //   setFormSubmitted(true);
+        // Update user profile with name and phone number
+        await updateProfile(user, {
+          displayName: name,
+          phoneNumber: phone,
+        });
 
+        // Add user to Firestore
+        try {
+          const docRef = await addDoc(collection(db, "users"), {
+            uid: user.uid,
+            name: name,
+            email: email,
+            phone: phone,
+          });
           console.log(docRef);
         } catch (error) {
           console.log("Error adding doc: ", error);
         }
-
-        // console.log(docRef);
-        // // console.log(docRef.id);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -83,17 +89,9 @@ export const SignUp = () => {
 
     setLoading(false);
 
-    console.log(newMember);
-
     // Reset form and state variables
-    setNewMember({
-      name: "",
-      email: "",
-      phone: "",
-    });
-
-    setEmail("");
     setName("");
+    setEmail("");
     setPhone("");
     setPassword("");
   };
