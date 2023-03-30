@@ -49,11 +49,14 @@ export const SignUp = ({ setMembers, members }) => {
       password: target.value,
     });
   };
+
+  //   TODO: add unique ids to each member
+
   //   To handle the form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(newMember);
+    // console.log(newMember);
     // Set new member and update members state with new member
     const updatedMembers = [...members, newMember];
     setMembers(updatedMembers);
