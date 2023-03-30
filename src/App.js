@@ -1,29 +1,27 @@
-import { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { Dashboard } from "./components/Dashboard/Dashboard";
+import { LandingPage } from "./components/LandingPage/LandingPage";
 import { SignUp } from "./components/SignUp/SignUp";
+import { Login } from "./components/Login/Login";
 
 function App() {
-  // Getting the contents from our local storage
-  const gettingLocalStorage = () => {
-    const retrievedMembersStr = localStorage.getItem("members");
-    const retrievedMembers = JSON.parse(retrievedMembersStr);
-    return retrievedMembers;
+  const ROUTES = {
+    LandingPage: "/",
+    SignUp: "/sign-up",
+    Dashboard: "/dashboard",
+    Login: "/login",
   };
-
-  const currentMembers = gettingLocalStorage();
-  const [members, setMembers] = useState(currentMembers || []);
-
-  useEffect(() => {
-    if (members.length > 0) {
-      localStorage.setItem("members", JSON.stringify(members));
-    }
-  }, [members]);
 
   return (
     <div className="App">
-      <header>Hey Google!</header>
       <div className="sign-up">
-        <SignUp setMembers={setMembers} members={members} />
+        <Routes>
+          <Route path={ROUTES.SignUp} element={<SignUp />} />
+          <Route path={ROUTES.LandingPage} element={<LandingPage />} />
+          <Route path={ROUTES.Dashboard} element={<Dashboard />} />
+          <Route path={ROUTES.Login} element={<Login />} />
+        </Routes>
       </div>
     </div>
   );

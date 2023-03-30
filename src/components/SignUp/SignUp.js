@@ -5,7 +5,7 @@ import { auth, db } from "../../utils/Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 
-export const SignUp = ({ setMembers, members }) => {
+export const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
