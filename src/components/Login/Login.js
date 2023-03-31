@@ -1,17 +1,14 @@
-import { useState } from "react";
-import { auth } from "../../utils/Firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState, useContext } from "react";
 import { LoginForm } from "./LoginForm";
+
+import { Context } from "../../contexts/AuthContext";
 
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userProfile, setUserProfile] = useState({
-    name: "",
-    email: "",
-  });
+  const { logIn } = useContext(Context);
   const navigate = useNavigate();
 
   //   setting the different form fields
@@ -28,38 +25,17 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signInWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // console.log(user);
+    await logIn(email, password);
 
-        // Adding token to session storage
-        sessionStorage.setItem(
-          "Auth Token",
-          userCredential._tokenResponse.refreshToken
-        );
+    const authToken = sessionStorage.getItem("Auth Token");
 
-        // Get user's profile
-        const profile = await auth.currentUser.getIdTokenResult();
-        console.log(profile);
+    if (authToken) {
+      navigate("/dashboard");
+    }
 
-        // You can access the user's name and phone number using profile.claims.name and profile.claims.phone_number
-
-        // Seetting the current user name and what not to the user profile
-        setUserProfile({
-          name: profile.claims.name,
-          email: profile.claims.email,
-        });
-
-        navigate("/dashboard", { state: JSON.stringify(userProfile) });
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
-
+    if (!authToken) {
+      alert("Invalid login details");
+    }
     // Reset form and state variables
     setEmail("");
     setPassword("");
