@@ -5,6 +5,8 @@ import { auth, db } from "../../utils/Firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 
+import { useNavigate } from "react-router-dom";
+
 export const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,6 +20,8 @@ export const SignUp = () => {
     email: "",
     phone: "",
   });
+
+  const navigate = useNavigate();
 
   //   setting the different form fields
   const setname = ({ target }) => {
@@ -58,6 +62,12 @@ export const SignUp = () => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         setLoading(true);
+
+        // Adding token to session storage
+        sessionStorage.setItem(
+          "Auth Token",
+          userCredential._tokenResponse.refreshToken
+        );
         // Signed up
         const user = userCredential.user;
         console.log(user);
@@ -67,6 +77,8 @@ export const SignUp = () => {
           displayName: name,
           phoneNumber: phone,
         });
+
+        navigate("/dashboard");
 
         // Add user to Firestore
         try {

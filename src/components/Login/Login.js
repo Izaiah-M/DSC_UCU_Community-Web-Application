@@ -3,9 +3,16 @@ import { auth } from "../../utils/Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { LoginForm } from "./LoginForm";
 
+import { useNavigate } from "react-router-dom";
+
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userProfile, setUserProfile] = useState({
+    name: "",
+    email: "",
+  });
+  const navigate = useNavigate();
 
   //   setting the different form fields
   const setemail = ({ target }) => {
@@ -17,15 +24,35 @@ export const Login = () => {
   };
 
   //   To handle the form submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // logging in our user
     await signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
-        // signed In
+        // Signed in
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
+
+        // Adding token to session storage
+        sessionStorage.setItem(
+          "Auth Token",
+          userCredential._tokenResponse.refreshToken
+        );
+
+        // Get user's profile
+        const profile = await auth.currentUser.getIdTokenResult();
+        console.log(profile);
+
+        // You can access the user's name and phone number using profile.claims.name and profile.claims.phone_number
+
+        // Seetting the current user name and what not to the user profile
+        setUserProfile({
+          name: profile.claims.name,
+          email: profile.claims.email,
+        });
+
+        navigate("/dashboard", { state: JSON.stringify(userProfile) });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -37,6 +64,10 @@ export const Login = () => {
     setEmail("");
     setPassword("");
   };
+
+  //   TODO: pass the user down as a prop to Dashboard
+
+  //   console.log(userProfile);
 
   return (
     <div>

@@ -1,9 +1,10 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import { LandingPage } from "./components/LandingPage/LandingPage";
 import { SignUp } from "./components/SignUp/SignUp";
 import { Login } from "./components/Login/Login";
+import { useEffect } from "react";
 
 function App() {
   const ROUTES = {
@@ -12,6 +13,16 @@ function App() {
     Dashboard: "/dashboard",
     Login: "/login",
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const authToken = sessionStorage.getItem("Auth Token");
+
+    if (authToken) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <div className="App">
