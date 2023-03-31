@@ -1,6 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { auth } from "../../utils/Firebase";
-import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 import { useEffect } from "react";
 
 export function Dashboard() {
