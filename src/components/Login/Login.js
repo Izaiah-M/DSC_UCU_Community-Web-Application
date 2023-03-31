@@ -27,7 +27,15 @@ export const Login = () => {
 
     await logIn(email, password);
 
-    navigate("/dashboard");
+    const authToken = sessionStorage.getItem("Auth Token");
+
+    if (authToken) {
+      navigate("/dashboard");
+    }
+
+    if (!authToken) {
+      alert("Invalid login details");
+    }
     // Reset form and state variables
     setEmail("");
     setPassword("");

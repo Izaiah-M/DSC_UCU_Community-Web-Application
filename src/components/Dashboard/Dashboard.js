@@ -1,11 +1,14 @@
 import { useNavigate } from "react-router-dom";
-
-import { useEffect } from "react";
+import { Context } from "../../contexts/AuthContext";
+import { useEffect, useContext, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export function Dashboard() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const { currentUser, setCurrentUser } = useContext(Context);
 
-  //   function to handle log out
+  // function to handle log out
   const handleLogOut = async () => {
     try {
       // Signing the user out
@@ -17,24 +20,42 @@ export function Dashboard() {
     }
   };
 
-  //   Trying to create and auth Token
   useEffect(() => {
     const authToken = sessionStorage.getItem("Auth Token");
 
     // If the token exists, navigate to dashboard
-    if (authToken) {
-      navigate("/dashboard");
-    }
-
-    // if it does not, navigate to login
     if (!authToken) {
       navigate("/login");
+      return;
     }
+
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // Get user's profile
+        const profile = await user.getIdTokenResult();
+        // console.log(profile);
+
+        // You can access the user's name and phone number using profile.claims.name and profile.claims.phone_number
+        setCurrentUser({
+          name: profile.claims.name,
+          email: profile.claims.email,
+        });
+      } else {
+        navigate("/login");
+      }
+      setLoading(false);
+    });
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
-      <p>Welcome</p>
+      <p>Welcome {currentUser.name}</p>
       <button className="btn" onClick={handleLogOut}>
         Log out
       </button>

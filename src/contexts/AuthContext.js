@@ -27,8 +27,6 @@ function AuthContextProvider({ children }) {
     // signing In the user
     await signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
-        // Signed in
-
         // Adding token to session storage
         sessionStorage.setItem(
           "Auth Token",
@@ -37,18 +35,13 @@ function AuthContextProvider({ children }) {
 
         // Get user's profile
         const profile = await auth.currentUser.getIdTokenResult();
-        console.log(profile);
+        // console.log(profile);
 
         // You can access the user's name and phone number using profile.claims.name and profile.claims.phone_number
-
-        // Seetting the current user name and what not to the user profile
         setCurrentUser({
           name: profile.claims.name,
           email: profile.claims.email,
         });
-        // console.log(currentUser);
-
-        // navigate("/dashboard", { state: { userProfile } });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -57,14 +50,14 @@ function AuthContextProvider({ children }) {
       });
   };
 
-  useEffect(() => {
-    //   called to set the current user in firebase
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-    });
+  // useEffect(() => {
+  //   //   called to set the current user in firebase
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     setCurrentUser(user);
+  //   });
 
-    return unsubscribe;
-  }, []);
+  //   return unsubscribe;
+  // }, []);
 
   // const value = {
   //   currentUser,
@@ -73,7 +66,7 @@ function AuthContextProvider({ children }) {
   // };
 
   return (
-    <Context.Provider value={{ currentUser, signUp, logIn }}>
+    <Context.Provider value={{ currentUser, signUp, logIn, setCurrentUser }}>
       {children}
     </Context.Provider>
   );
