@@ -22,6 +22,12 @@ export function Dashboard() {
   };
 
   useEffect(() => {
+    const authToken = sessionStorage.getItem("Auth Token");
+
+    if (!authToken) {
+      navigate("/login");
+    }
+
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         // Get user's profile
