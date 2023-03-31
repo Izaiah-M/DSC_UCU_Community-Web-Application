@@ -52,7 +52,7 @@ export const Login = () => {
           email: profile.claims.email,
         });
 
-        navigate("/dashboard", { state: JSON.stringify(userProfile) });
+        // navigate("/dashboard", { state: { userProfile } });
       })
       .catch((error) => {
         const errorCode = error.code;
