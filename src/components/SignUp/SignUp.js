@@ -1,10 +1,11 @@
 import { Alert, AlertTitle } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { SignUpForm } from "./SignUpForm/SignUpForm";
 import { auth, db } from "../../utils/Firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 
+import { Context } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
@@ -22,6 +23,7 @@ export const SignUp = () => {
   });
 
   const navigate = useNavigate();
+  const { setCurrentUser } = useContext(Context);
 
   //   setting the different form fields
   const setname = ({ target }) => {
@@ -76,6 +78,11 @@ export const SignUp = () => {
         await updateProfile(user, {
           displayName: name,
           phoneNumber: phone,
+        });
+
+        setCurrentUser({
+          name: name,
+          email: email,
         });
 
         navigate("/dashboard");

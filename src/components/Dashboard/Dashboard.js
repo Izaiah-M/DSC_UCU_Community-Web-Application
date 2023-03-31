@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../contexts/AuthContext";
 import { useEffect, useContext, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../utils/Firebase";
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -21,16 +22,6 @@ export function Dashboard() {
   };
 
   useEffect(() => {
-    const authToken = sessionStorage.getItem("Auth Token");
-
-    // If the token exists, navigate to dashboard
-    if (!authToken) {
-      navigate("/login");
-      return;
-    }
-
-    const auth = getAuth();
-
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         // Get user's profile
@@ -55,7 +46,7 @@ export function Dashboard() {
 
   return (
     <div>
-      <p>Welcome {currentUser.name}</p>
+      <p>Welcome Back {currentUser.name}</p>
       <button className="btn" onClick={handleLogOut}>
         Log out
       </button>
