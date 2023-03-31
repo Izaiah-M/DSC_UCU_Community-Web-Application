@@ -1,23 +1,29 @@
 import { Alert, AlertTitle } from "@mui/material";
 import { useState } from "react";
 import { SignUpForm } from "./SignUpForm/SignUpForm";
+import { auth, db } from "../../utils/Firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
-export const SignUp = ({ setMembers, members }) => {
+import { useNavigate } from "react-router-dom";
+
+export const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [newMember, setNewMember] = useState({
     name: "",
     email: "",
     phone: "",
-    password: "",
   });
 
-  //   setting the different form fields
+  const navigate = useNavigate();
 
+  //   setting the different form fields
   const setname = ({ target }) => {
     setName(target.value);
     setNewMember({
@@ -44,38 +50,60 @@ export const SignUp = ({ setMembers, members }) => {
 
   const setpassword = ({ target }) => {
     setPassword(target.value);
-    setNewMember({
-      ...newMember,
-      password: target.value,
-    });
   };
 
   //   TODO: add unique ids to each member
 
   //   To handle the form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // console.log(newMember);
-    // Set new member and update members state with new member
-    const updatedMembers = [...members, newMember];
-    setMembers(updatedMembers);
+    // Create new user
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        setLoading(true);
 
-    // Add updatedMembers to local storage
-    localStorage.setItem("members", JSON.stringify(updatedMembers));
+        // Adding token to session storage
+        sessionStorage.setItem(
+          "Auth Token",
+          userCredential._tokenResponse.refreshToken
+        );
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
 
-    setFormSubmitted(true);
+        // Update user profile with name and phone number
+        await updateProfile(user, {
+          displayName: name,
+          phoneNumber: phone,
+        });
+
+        navigate("/dashboard");
+
+        // Add user to Firestore
+        try {
+          const docRef = await addDoc(collection(db, "users"), {
+            uid: user.uid,
+            name: name,
+            email: email,
+            phone: phone,
+          });
+          console.log(docRef);
+        } catch (error) {
+          console.log("Error adding doc: ", error);
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+
+    setLoading(false);
 
     // Reset form and state variables
-    setNewMember({
-      name: "",
-      email: "",
-      phone: "",
-      password: "",
-    });
-
-    setEmail("");
     setName("");
+    setEmail("");
     setPhone("");
     setPassword("");
   };
@@ -89,6 +117,7 @@ export const SignUp = ({ setMembers, members }) => {
           Signed Up <strong>successfully!</strong>
         </Alert>
       )}
+
       <SignUpForm
         name={name}
         setName={setname}
@@ -99,6 +128,7 @@ export const SignUp = ({ setMembers, members }) => {
         handleSubmit={handleSubmit}
         password={password}
         setPassword={setpassword}
+        loading={loading}
       />
     </div>
   );

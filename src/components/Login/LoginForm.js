@@ -1,45 +1,20 @@
 import { NavLink } from "react-router-dom";
-import "./SignUpForm.css";
 
-export const SignUpForm = ({
+export const LoginForm = ({
   handleSubmit,
-  name,
   email,
   setEmail,
-  setName,
-  phone,
-  setPhone,
   password,
   setPassword,
-  loading,
 }) => {
+  // TODO: get the user info when they log in, so find a way to connect it
+
   return (
     <div className="form-card">
       <div>
-        <h2>Sign Up</h2>
+        <h2>Log In</h2>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="row">
-          <input
-            type="text"
-            value={name}
-            onChange={setName}
-            placeholder="Full Names"
-            required
-            autoComplete="name"
-          />
-        </div>
-        <div className="row">
-          <input
-            type="tel"
-            value={phone}
-            onChange={setPhone}
-            placeholder="075XXXXXXX"
-            pattern="^(?:\+256\s\d{9}|\d{10})$"
-            autoComplete="tel"
-            required
-          />
-        </div>
         <div className="row">
           <input
             type="text"
@@ -64,17 +39,12 @@ export const SignUpForm = ({
           />
         </div>
         <div className="row">
-          <input
-            type="submit"
-            value="Sign Up"
-            className="btn"
-            disabled={loading}
-          />
+          <input type="submit" value="Log In" className="btn" />
         </div>
       </form>
       <div>
         <p>
-          Already have an account? <NavLink to="/login">log in!</NavLink>
+          Need an account? <NavLink to="/sign-up">Sign Up!</NavLink>
         </p>
       </div>
     </div>
