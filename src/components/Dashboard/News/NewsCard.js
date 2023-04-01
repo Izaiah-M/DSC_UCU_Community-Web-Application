@@ -1,5 +1,5 @@
-import { Card, Text, Row, Grid } from "@nextui-org/react";
-import "./NewsCard.css";
+import { Card, Text, Row, Grid, css } from "@nextui-org/react";
+
 import Carousel from "react-bootstrap/Carousel";
 import { useState } from "react";
 
@@ -17,7 +17,7 @@ export const NewsCard = ({ articles }) => {
   return (
     <>
       <Grid.Container gap={4} justify="center">
-        <Grid xs={12} sm={4}>
+        <Grid xs={12} sm={7}>
           <Card isPressable>
             <Card.Body css={{ p: 0 }}>
               <Carousel fade onSelect={handleSelect}>

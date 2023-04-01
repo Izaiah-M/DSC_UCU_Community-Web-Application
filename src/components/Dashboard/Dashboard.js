@@ -4,6 +4,7 @@ import { useEffect, useContext, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/Firebase";
 import { News } from "./News/News";
+import { Careers } from "./Careers/Careers";
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ export function Dashboard() {
         Log out
       </button>
       <p>Welcome Back {currentUser.name}</p>
+      <Careers />
       <News />
     </div>
   );
