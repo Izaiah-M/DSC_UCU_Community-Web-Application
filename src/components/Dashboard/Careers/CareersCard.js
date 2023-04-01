@@ -50,7 +50,7 @@ export const CareersCard = ({ jobs }) => {
                   }}
                 >
                   <a href={currentUrl} target="_blank">
-                    Read more
+                    Apply
                   </a>
                 </Text>
               </Row>
