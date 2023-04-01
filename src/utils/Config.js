@@ -34,11 +34,3 @@ const apiRequests = {
 };
 
 export default apiRequests;
-
-// const test = async () => {
-//   const results = await apiRequests.getTechNews();
-
-//   console.log(results);
-// };
-
-// test();

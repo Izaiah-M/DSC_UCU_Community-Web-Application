@@ -149,7 +149,7 @@ export function LandingPage() {
                     src={item.img}
                     objectFit="cover"
                     width="100%"
-                    height={140}
+                    height={300}
                     alt={item.name}
                   />
                 </Card.Body>
