@@ -36,6 +36,9 @@ export const NewsCard = ({ articles }) => {
             </Card.Body>
             <Card.Footer css={{ justifyItems: "flex-start" }}>
               <Row wrap="wrap" justify="space-between" align="center">
+                <Text b>
+                  <strong>Latest in Tech News</strong>
+                </Text>
                 <Text b>{currentTitle}</Text>
                 <Text
                   css={{
