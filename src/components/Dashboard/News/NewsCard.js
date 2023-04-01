@@ -1,4 +1,4 @@
-import { Card, Text, Row, Grid, css } from "@nextui-org/react";
+import { Card, Text, Row, Grid } from "@nextui-org/react";
 
 import Carousel from "react-bootstrap/Carousel";
 import { useState } from "react";
