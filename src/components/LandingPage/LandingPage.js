@@ -61,6 +61,7 @@ export function LandingPage() {
   return (
     <>
       <Grid.Container gap={4} justify="center">
+        {/* Nav Bar from next UI */}
         <Navbar isBordered={isDark} variant="sticky">
           <Navbar.Content
             activeColor={activeColor}
@@ -88,6 +89,7 @@ export function LandingPage() {
           </Navbar.Content>
         </Navbar>
 
+        {/* Carousel from react-bootsrap */}
         <Carousel fade>
           <Carousel.Item>
             <img className="d-block w-100" src={img5} alt="First slide" />
@@ -107,6 +109,8 @@ export function LandingPage() {
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
+
+        {/* Cards from NExt-UI */}
         <Grid>
           <Card
             isPressable

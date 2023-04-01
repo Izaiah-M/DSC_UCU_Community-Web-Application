@@ -19,14 +19,7 @@ export const News = () => {
 
   return (
     <div>
-      {articles.map((article, key) => (
-        <NewsCard
-          key={key + 1}
-          title={article.title}
-          url={article.url}
-          img={article.img}
-        />
-      ))}
+      <NewsCard articles={articles} />
     </div>
   );
 };

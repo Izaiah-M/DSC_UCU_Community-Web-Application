@@ -1,24 +1,42 @@
 import { Card, Text, Row, Grid } from "@nextui-org/react";
 import "./NewsCard.css";
+import Carousel from "react-bootstrap/Carousel";
+import { useState } from "react";
 
-export const NewsCard = ({ title, img, url }) => {
+export const NewsCard = ({ articles }) => {
+  const [currentTitle, setCurrentTitle] = useState("");
+  const [currentUrl, setCurrentUrl] = useState("");
+  const [currentImg, setCurrentImg] = useState("");
+
+  const handleSelect = (selectedIndex, e) => {
+    setCurrentTitle(articles[selectedIndex].title);
+    setCurrentUrl(articles[selectedIndex].url);
+    setCurrentImg(articles[selectedIndex].img);
+  };
+
   return (
     <>
       <Grid.Container gap={4} justify="center">
         <Grid xs={12} sm={4}>
           <Card isPressable>
             <Card.Body css={{ p: 0 }}>
-              <Card.Image
-                src={img}
-                objectFit="cover"
-                width="100%"
-                height={400}
-                alt={title}
-              />
+              <Carousel fade onSelect={handleSelect}>
+                {articles.map((article, key) => (
+                  <Carousel.Item key={key + 1}>
+                    <Card.Image
+                      src={article.img}
+                      objectFit="cover"
+                      width="100%"
+                      height={400}
+                      alt={article.title}
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
             </Card.Body>
             <Card.Footer css={{ justifyItems: "flex-start" }}>
               <Row wrap="wrap" justify="space-between" align="center">
-                <Text b>{title}</Text>
+                <Text b>{currentTitle}</Text>
                 <Text
                   css={{
                     color: "$accents7",
@@ -26,7 +44,7 @@ export const NewsCard = ({ title, img, url }) => {
                     fontSize: "$sm",
                   }}
                 >
-                  <a href={url} target="_blank">
+                  <a href={currentUrl} target="_blank">
                     Read more
                   </a>
                 </Text>
