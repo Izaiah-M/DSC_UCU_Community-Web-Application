@@ -3,6 +3,7 @@ import { Context } from "../../contexts/AuthContext";
 import { useEffect, useContext, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/Firebase";
+import { News } from "./News/News";
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -52,10 +53,11 @@ export function Dashboard() {
 
   return (
     <div>
-      <p>Welcome Back {currentUser.name}</p>
       <button className="btn" onClick={handleLogOut}>
         Log out
       </button>
+      <p>Welcome Back {currentUser.name}</p>
+      <News />
     </div>
   );
 }
