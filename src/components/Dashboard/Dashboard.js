@@ -5,24 +5,13 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/Firebase";
 import { News } from "./News/News";
 import { Careers } from "./Careers/Careers";
-import { Grid } from "@nextui-org/react";
+// import { Grid } from "@nextui-org/react";
+import { NavBar } from "./NavBar/NavBar";
 
 export function Dashboard() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { currentUser, setCurrentUser } = useContext(Context);
-
-  // function to handle log out
-  const handleLogOut = async () => {
-    try {
-      // Signing the user out
-      sessionStorage.removeItem("Auth Token");
-
-      navigate("/");
-    } catch (error) {
-      console.log("Failed to log out", error);
-    }
-  };
 
   useEffect(() => {
     const authToken = sessionStorage.getItem("Auth Token");
@@ -55,9 +44,10 @@ export function Dashboard() {
 
   return (
     <>
-      <button className="btn" onClick={handleLogOut}>
+      {/* <button className="btn" onClick={handleLogOut}>
         Log out
-      </button>
+      </button> */}
+      <NavBar />
       <p>Welcome Back {currentUser.name} 👋</p>
 
       <Careers />
