@@ -1,4 +1,4 @@
-import { Card, Text, Row, Grid, css } from "@nextui-org/react";
+import { Card, Text, Row, Grid } from "@nextui-org/react";
 
 import Carousel from "react-bootstrap/Carousel";
 import { useState } from "react";
@@ -13,6 +13,10 @@ export const NewsCard = ({ articles }) => {
     setCurrentUrl(articles[selectedIndex].url);
     setCurrentImg(articles[selectedIndex].img);
   };
+
+  if (!articles || articles.length === 0) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -36,6 +40,9 @@ export const NewsCard = ({ articles }) => {
             </Card.Body>
             <Card.Footer css={{ justifyItems: "flex-start" }}>
               <Row wrap="wrap" justify="space-between" align="center">
+                <Text b>
+                  <strong>Latest in Tech News</strong>
+                </Text>
                 <Text b>{currentTitle}</Text>
                 <Text
                   css={{
