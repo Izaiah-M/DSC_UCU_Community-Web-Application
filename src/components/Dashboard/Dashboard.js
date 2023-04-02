@@ -10,6 +10,7 @@ import { Grid } from "@nextui-org/react";
 
 import "./Dashboard.css";
 import { Calendar } from "../Upcoming/Calendar";
+import { Events } from "./EventsCard/Events";
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -54,9 +55,15 @@ export function Dashboard() {
           <p className="msg">Welcome Back {currentUser.name} 👋</p>
         </Grid>
         <Grid xs={12} sm={12}>
-          <Grid xs={12} sm={4}>
-            <Careers />
-          </Grid>
+          <Grid.Container gap={4} justify="center">
+            <Grid xs={12} sm={4}>
+              <Careers />
+            </Grid>
+
+            <Grid xs={12} sm={4}>
+              <Events />
+            </Grid>
+          </Grid.Container>
         </Grid>
         <Grid xs={12} sm={7}>
           <News />
