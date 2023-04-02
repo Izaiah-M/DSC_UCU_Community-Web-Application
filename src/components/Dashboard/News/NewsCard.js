@@ -14,6 +14,10 @@ export const NewsCard = ({ articles }) => {
     setCurrentImg(articles[selectedIndex].img);
   };
 
+  if (!articles || articles.length === 0) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <Grid.Container gap={4} justify="center">
