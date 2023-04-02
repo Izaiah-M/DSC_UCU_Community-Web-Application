@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { NavBar } from "../Dashboard/NavBar/NavBar";
+import { CalendarCard } from "./CalendarCard";
 
 export const Calendar = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export const Calendar = () => {
   return (
     <>
       <NavBar />
-      <p>Calendar Component</p>
+      <CalendarCard />
     </>
   );
 };
