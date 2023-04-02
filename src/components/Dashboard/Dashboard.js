@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/Firebase";
 import { News } from "./News/News";
 import { Careers } from "./Careers/Careers";
+import { Grid } from "@nextui-org/react";
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -53,13 +54,15 @@ export function Dashboard() {
   }
 
   return (
-    <div>
+    <>
       <button className="btn" onClick={handleLogOut}>
         Log out
       </button>
-      <p>Welcome Back {currentUser.name}</p>
+      <p>Welcome Back {currentUser.name} 👋</p>
+
       <Careers />
+
       <News />
-    </div>
+    </>
   );
 }
