@@ -21,10 +21,6 @@ export function NavBar() {
       navItem: "Help & Feedback",
       link: "/help",
     },
-    {
-      navItem: "Log out",
-      link: "/dashboard",
-    },
   ];
 
   // function to handle log out
