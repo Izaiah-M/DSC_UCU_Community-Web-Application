@@ -1,15 +1,31 @@
-import { Navbar, Button, Link, Text } from "@nextui-org/react";
+import { Navbar, Button, Text } from "@nextui-org/react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export function NavBar() {
-  const collapseItems = [
-    "Up coming Events",
-    "Study Buddy",
-    "Help & Feedback",
-    "Log out",
-  ];
-
   const navigate = useNavigate();
+  const collapseItems = [
+    {
+      navItem: "Dashboard",
+      link: "/dashboard",
+    },
+    {
+      navItem: "Up coming Events",
+      link: "/dashboard/upcoming",
+    },
+    {
+      navItem: "Study Buddy",
+      link: "/study",
+    },
+    {
+      navItem: "Help & Feedback",
+      link: "/help",
+    },
+    {
+      navItem: "Log out",
+      link: "/dashboard",
+    },
+  ];
 
   // function to handle log out
   const handleLogOut = () => {
@@ -48,9 +64,9 @@ export function NavBar() {
                 css={{
                   minWidth: "100%",
                 }}
-                href="#"
+                to={item.link}
               >
-                {item}
+                {item.navItem}
               </Link>
             </Navbar.CollapseItem>
           ))}
