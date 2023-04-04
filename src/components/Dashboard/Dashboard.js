@@ -1,12 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Routes, Route } from "react-router-dom";
 import { Context } from "../../contexts/AuthContext";
 import { useEffect, useContext, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/Firebase";
 import { News } from "./News/News";
 import { Careers } from "./Careers/Careers";
-// import { Grid } from "@nextui-org/react";
 import { NavBar } from "./NavBar/NavBar";
+import { Grid } from "@nextui-org/react";
+
+import "./Dashboard.css";
+import { Calendar } from "../Upcoming/Calendar";
+import { Events } from "./EventsCard/Events";
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -44,15 +48,27 @@ export function Dashboard() {
 
   return (
     <>
-      {/* <button className="btn" onClick={handleLogOut}>
-        Log out
-      </button> */}
       <NavBar />
-      <p>Welcome Back {currentUser.name} 👋</p>
 
-      <Careers />
+      <Grid.Container gap={2} justify="flex-start">
+        <Grid xs={12} sm={12} justify="center">
+          <p className="msg">Welcome Back {currentUser.name} 👋</p>
+        </Grid>
+        <Grid xs={12} sm={12}>
+          <Grid.Container gap={4} justify="center">
+            <Grid xs={12} sm={4}>
+              <Careers />
+            </Grid>
 
-      <News />
+            <Grid xs={12} sm={4}>
+              <Events />
+            </Grid>
+          </Grid.Container>
+        </Grid>
+        <Grid xs={12} sm={7}>
+          <News />
+        </Grid>
+      </Grid.Container>
     </>
   );
 }
