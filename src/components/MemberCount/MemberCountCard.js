@@ -1,25 +1,36 @@
-import { Card, Col, Text } from "@nextui-org/react";
+import { Card, Grid, Text, Link } from "@nextui-org/react";
+import CountUp from "react-countup";
 
-export const MemberCountCard = () => {
+export const MemberCountCard = ({ members }) => {
   return (
-    <Card css={{ w: "100%" }}>
-      <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-        <Col>
-          <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
-            Our Ever Growing Numbers
-          </Text>
-          <Text h4 color="white">
-            Glad you are apart!
-          </Text>
-        </Col>
+    <Card css={{ p: "$6", mw: "400px" }}>
+      <Card.Header>
+        <img
+          alt="nextui logo"
+          src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
+          width="34px"
+          height="34px"
+        />
+        <Grid.Container css={{ pl: "$6" }}>
+          <Grid xs={12}>
+            <Text h4 css={{ lineHeight: "$xs" }}>
+              GDSC
+            </Text>
+          </Grid>
+          <Grid xs={12}>
+            <Text css={{ color: "$accents8" }}>Student Dev clubs</Text>
+          </Grid>
+        </Grid.Container>
       </Card.Header>
-      <Card.Image
-        src="https://nextui.org/images/card-example-3.jpeg"
-        width="100%"
-        height={340}
-        objectFit="cover"
-        alt="Card image background"
-      />
+      <Card.Body css={{ py: "$2" }}>
+        <span>A Growing Community of</span>{" "}
+        <span
+          style={{ fontSize: "24px", fontWeight: "bold", color: "#4285F4" }}
+        >
+          <CountUp start={0} end={members} duration={2.5} />
+        </span>
+        <span style={{ color: "#4285F4" }}>Club members</span>
+      </Card.Body>
     </Card>
   );
 };

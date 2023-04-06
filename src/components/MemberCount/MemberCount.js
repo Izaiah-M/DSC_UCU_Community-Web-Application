@@ -16,8 +16,7 @@ export const MemberCount = () => {
 
   return (
     <div>
-      <p>{numMembers} members</p>
-      <MemberCountCard />
+      <MemberCountCard members={numMembers} />
     </div>
   );
 };
