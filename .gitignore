@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+
+# prod
+/src/dsc-ucu-community-firebase-adminsdk-nbnl6-afed9a36eb.json

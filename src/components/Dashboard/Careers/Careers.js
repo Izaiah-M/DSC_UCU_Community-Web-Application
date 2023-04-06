@@ -18,6 +18,7 @@ export const Careers = () => {
 
   return (
     <div>
+      <p style={{ fontWeight: "bolder" }}>Google Careers!</p>
       <CareersCard jobs={jobs} />
     </div>
   );

@@ -1,4 +1,4 @@
-import { Card, Text, Row, Grid } from "@nextui-org/react";
+import { Card, Text, Row } from "@nextui-org/react";
 
 import Carousel from "react-bootstrap/Carousel";
 import { useState } from "react";
@@ -21,10 +21,16 @@ export const NewsCard = ({ articles }) => {
   return (
     <>
       <Card isPressable>
-        <Card.Body css={{ p: 0 }}>
+        <Card.Body
+          css={{
+            p: 0,
+            mw: "700px",
+            minWidth: "700px",
+          }}
+        >
           <Carousel fade onSelect={handleSelect}>
             {articles.map((article, key) => (
-              <Carousel.Item key={key + 1}>
+              <Carousel.Item key={key + 1} style={{ width: "100%" }}>
                 <Card.Image
                   src={article.img}
                   objectFit="cover"
@@ -36,17 +42,26 @@ export const NewsCard = ({ articles }) => {
             ))}
           </Carousel>
         </Card.Body>
-        <Card.Footer css={{ justifyItems: "flex-start" }}>
-          <Row wrap="wrap" justify="space-between" align="center">
-            <Text b>
+        <Card.Footer
+          css={{
+            justifyItems: "flex-start",
+            mw: "700px",
+            minWidth: "700px",
+          }}
+        >
+          <Row wrap="wrap" justify="center" align="center">
+            <Text b style={{ width: "100%" }}>
               <strong>Latest in Tech News</strong>
             </Text>
-            <Text b>{currentTitle}</Text>
+            <Text b style={{ width: "100%" }}>
+              {currentTitle}
+            </Text>
             <Text
               css={{
                 color: "$accents7",
                 fontWeight: "$semibold",
                 fontSize: "$sm",
+                width: "100%",
               }}
             >
               <a href={currentUrl} target="_blank">

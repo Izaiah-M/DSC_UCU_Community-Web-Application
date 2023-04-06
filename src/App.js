@@ -4,8 +4,8 @@ import { Dashboard } from "./components/Dashboard/Dashboard";
 import { LandingPage } from "./components/LandingPage/LandingPage";
 import { SignUp } from "./components/SignUp/SignUp";
 import { Login } from "./components/Login/Login";
-import { useEffect } from "react";
 import { Calendar } from "./components/Upcoming/Calendar";
+import { StudyBuddy } from "./components/StudyBuddy/StudyBuddy";
 
 function App() {
   const ROUTES = {
@@ -14,17 +14,8 @@ function App() {
     Dashboard: "/dashboard/*",
     Login: "/login",
     Upcoming: "/dashboard/upcoming",
+    Study: "/dashboard/study-buddy",
   };
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const authToken = sessionStorage.getItem("Auth Token");
-
-    if (authToken) {
-      navigate("/dashboard/*");
-    }
-  }, []);
 
   return (
     <div className="App">
@@ -35,6 +26,7 @@ function App() {
           <Route path={ROUTES.Login} element={<Login />} />
           <Route path={ROUTES.Dashboard} element={<Dashboard />} />
           <Route path={ROUTES.Upcoming} element={<Calendar />} />
+          <Route path={ROUTES.Study} element={<StudyBuddy />} />
         </Routes>
       </div>
     </div>

@@ -17,16 +17,34 @@ export const EventsCard = () => {
 
   return (
     <>
-      <Card isPressable isHoverable variant="bordered" css={{ mw: "400px" }}>
-        <Card.Body>
+      <Card
+        isPressable
+        isHoverable
+        variant="bordered"
+        css={{ w: "400px", h: "300px" }}
+      >
+        <Card.Body css={{ justifyItems: "center" }}>
+          <p
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              marginBottom: "50px",
+              borderBottom: "2px solid #dee1e3",
+              width: "100%",
+            }}
+          >
+            Today's Plan
+          </p>
           {filteredEvents.length > 0 ? (
-            <Text>
+            <Text style={{ textAlign: "center" }}>
               {filteredEvents.map((event, key) => {
                 return event.title;
               })}
             </Text>
           ) : (
-            <Text>No events scheduled for today</Text>
+            <Text style={{ textAlign: "center" }}>
+              No events scheduled for today
+            </Text>
           )}
         </Card.Body>
       </Card>

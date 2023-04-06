@@ -11,6 +11,8 @@ import { Grid } from "@nextui-org/react";
 import "./Dashboard.css";
 import { Calendar } from "../Upcoming/Calendar";
 import { Events } from "./EventsCard/Events";
+import { RandonYoutube } from "./RandomYoutube/RandonYoutube";
+import { MemberCount } from "../MemberCount/MemberCount";
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -50,24 +52,41 @@ export function Dashboard() {
     <>
       <NavBar />
 
-      <Grid.Container gap={2} justify="flex-start">
+      <Grid.Container gap={4} justify="center">
         <Grid xs={12} sm={12} justify="center">
           <p className="msg">Welcome Back {currentUser.name} 👋</p>
         </Grid>
-        <Grid xs={12} sm={12}>
-          <Grid.Container gap={4} justify="center">
-            <Grid xs={12} sm={4}>
-              <Careers />
-            </Grid>
+        <Grid.Container gap={4} justify="center">
+          <Grid xs={12} sm={7} justify="center">
+            <News />
+          </Grid>
+          <Grid
+            xs={12}
+            sm={4}
+            justify="center"
+            style={{
+              backgroundColor: "#65aefc",
+              borderRadius: "8px",
+              marginTop: "50px",
+              height: "500px",
+            }}
+          >
+            <Events />
+          </Grid>
+        </Grid.Container>
+        <Grid.Container gap={3} justify="flex-start">
+          <Grid xs={12} sm={5} justify="center">
+            <Careers />
+          </Grid>
 
-            <Grid xs={12} sm={4}>
-              <Events />
-            </Grid>
-          </Grid.Container>
-        </Grid>
-        <Grid xs={12} sm={7}>
-          <News />
-        </Grid>
+          <Grid xs={12} sm={5} justify="center">
+            <RandonYoutube />
+          </Grid>
+
+          <Grid xs={12} sm={5} justify="center">
+            <MemberCount />
+          </Grid>
+        </Grid.Container>
       </Grid.Container>
     </>
   );

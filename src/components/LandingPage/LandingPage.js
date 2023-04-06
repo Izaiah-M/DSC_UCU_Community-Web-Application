@@ -11,7 +11,9 @@ import {
   Row,
 } from "@nextui-org/react";
 
-import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import img3 from "../../images/joshua-aragon-EaB4Ml7C7fE-unsplash.jpg";
@@ -57,6 +59,16 @@ export function LandingPage() {
       role: "Outreach Lead",
     },
   ];
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const authToken = sessionStorage.getItem("Auth Token");
+
+    if (authToken) {
+      navigate("/dashboard/*");
+    }
+  }, []);
 
   return (
     <>
