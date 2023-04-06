@@ -15,11 +15,11 @@ export function NavBar() {
     },
     {
       navItem: "Study Buddy",
-      link: "/study",
+      link: "/dashboard/study-buddy",
     },
     {
       navItem: "Help & Feedback",
-      link: "/help",
+      link: "/dashboard/help",
     },
   ];
 

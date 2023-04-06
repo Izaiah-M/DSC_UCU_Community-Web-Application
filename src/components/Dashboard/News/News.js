@@ -19,6 +19,7 @@ export const News = () => {
 
   return (
     <div>
+      <p style={{ fontWeight: "bolder" }}>Latest Tech News</p>
       <NewsCard articles={articles} />
     </div>
   );

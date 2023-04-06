@@ -16,8 +16,8 @@ export const CareersCard = ({ jobs }) => {
 
   return (
     <>
-      <Card isPressable>
-        <Card.Body css={{ p: 0 }}>
+      <Card isPressable css={{ h: "300px", w: "500px" }}>
+        <Card.Body css={{ p: 0, h: "300px", w: "500px" }}>
           {jobs.length > 0 ? (
             <Carousel fade onSelect={handleSelect}>
               {jobs.map((job, key) => (
@@ -36,11 +36,14 @@ export const CareersCard = ({ jobs }) => {
             <p>Loading</p>
           )}
         </Card.Body>
-        <Card.Footer css={{ justifyItems: "flex-start" }}>
-          <Row wrap="wrap" justify="space-between" align="center">
-            <Text b>
-              <strong>Google Job Opportunitues</strong>
-            </Text>
+        <Card.Footer
+          css={{
+            justifyItems: "flex-start",
+            mh: "100px",
+            mw: "500px",
+          }}
+        >
+          <Row wrap="wrap" justify="center" align="center">
             <Text b>{currentTitle}</Text>
             <Text
               css={{
