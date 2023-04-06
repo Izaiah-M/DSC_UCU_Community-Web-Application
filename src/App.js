@@ -4,7 +4,6 @@ import { Dashboard } from "./components/Dashboard/Dashboard";
 import { LandingPage } from "./components/LandingPage/LandingPage";
 import { SignUp } from "./components/SignUp/SignUp";
 import { Login } from "./components/Login/Login";
-import { useEffect } from "react";
 import { Calendar } from "./components/Upcoming/Calendar";
 import { StudyBuddy } from "./components/StudyBuddy/StudyBuddy";
 
