@@ -1,7 +1,7 @@
 import { Card, Text, Row, Grid } from "@nextui-org/react";
 import Carousel from "react-bootstrap/Carousel";
 import { useState } from "react";
-import Googleimg from "../../../images/pawel-czerwinski-fpZZEV0uQwA-unsplash.jpg";
+import Googleimg from "../../../images/Google (1).jpg";
 
 export const CareersCard = ({ jobs }) => {
   const [currentTitle, setCurrentTitle] = useState("");
@@ -16,18 +16,31 @@ export const CareersCard = ({ jobs }) => {
 
   return (
     <>
-      <Card isPressable css={{ h: "300px", w: "500px" }}>
-        <Card.Body css={{ p: 0, h: "300px", w: "500px" }}>
+      <Card isPressable css={{ h: "400px", w: "400px" }}>
+        <Card.Body
+          css={{
+            p: 0,
+            mh: "400px",
+            minHeight: "300px",
+            w: "400px",
+          }}
+        >
           {jobs.length > 0 ? (
-            <Carousel fade onSelect={handleSelect}>
+            <Carousel
+              fade
+              onSelect={handleSelect}
+              style={{ maxHeight: "100%", overflow: "hidden" }}
+            >
               {jobs.map((job, key) => (
                 <Carousel.Item key={key + 1}>
-                  <Card.Image
+                  <img
                     src={Googleimg}
-                    objectFit="cover"
-                    width="100%"
-                    height={200}
-                    alt={job.title}
+                    alt=""
+                    style={{
+                      display: "block",
+                      margin: "0 auto",
+                      maxHeight: "100%",
+                    }}
                   />
                 </Carousel.Item>
               ))}
@@ -39,12 +52,23 @@ export const CareersCard = ({ jobs }) => {
         <Card.Footer
           css={{
             justifyItems: "flex-start",
-            mh: "100px",
-            mw: "500px",
+            mh: "200px",
+            mw: "400px",
           }}
         >
           <Row wrap="wrap" justify="center" align="center">
-            <Text b>{currentTitle}</Text>
+            <p
+              b
+              style={{
+                width: "100%",
+                fontWeight: "bold",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {currentTitle}
+            </p>
             <Text
               css={{
                 color: "$accents7",

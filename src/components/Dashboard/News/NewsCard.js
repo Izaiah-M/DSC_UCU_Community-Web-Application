@@ -50,10 +50,26 @@ export const NewsCard = ({ articles }) => {
           }}
         >
           <Row wrap="wrap" justify="center" align="center">
-            <Text b style={{ width: "100%" }}>
+            <Text
+              b
+              style={{
+                width: "100%",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
               <strong>Latest in Tech News</strong>
             </Text>
-            <Text b style={{ width: "100%" }}>
+            <Text
+              b
+              style={{
+                width: "100%",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
               {currentTitle}
             </Text>
             <Text
