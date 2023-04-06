@@ -74,16 +74,20 @@ export function Dashboard() {
             <Events />
           </Grid>
         </Grid.Container>
-        <Grid.Container gap={3} justify="flex-start">
-          <Grid xs={12} sm={5} justify="center">
+        <Grid.Container
+          gap={1}
+          justify="flex-start"
+          style={{ backgroundColor: "pink" }}
+        >
+          <Grid xs={12} sm={4} justify="center">
             <Careers />
           </Grid>
 
-          <Grid xs={12} sm={5} justify="center">
+          <Grid xs={12} sm={4} justify="center">
             <RandonYoutube />
           </Grid>
 
-          <Grid xs={12} sm={5} justify="center">
+          <Grid xs={12} sm={3} justify="center">
             <MemberCount />
           </Grid>
         </Grid.Container>

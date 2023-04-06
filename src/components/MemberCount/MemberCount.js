@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { db } from "../../utils/Firebase";
 import { getDocs, collection } from "@firebase/firestore";
+import { MemberCountCard } from "./MemberCountCard";
 
 export const MemberCount = () => {
   const [numMembers, setNumMembers] = useState(0);
@@ -16,6 +17,7 @@ export const MemberCount = () => {
   return (
     <div>
       <p>{numMembers} members</p>
+      <MemberCountCard />
     </div>
   );
 };
