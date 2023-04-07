@@ -19,8 +19,11 @@ JavaScript
 ## APIs Used to achieve this functionality
 
 YoutubeAPI: https://www.googleapis.com/youtube/v3
+
 newsAPI: https://newsapi.org
+
 jsearch(for the careers functionality): https://jsearch.p.rapidapi.com/search
+
 And lastly the firebase API
 
 ## Installation
