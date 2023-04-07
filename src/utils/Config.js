@@ -1,14 +1,16 @@
 import axios from "axios";
 
 // const axios = require("axios");
-const jobsApiKey = "f964ce7b28mshb78919b83caff91p11222fjsn9711575edaa0";
+const jobsApiKey = process.env.REACT_APP_JOBSKEY;
 
-const YouTubeAPIKEY = "AIzaSyBP0LSkncAjsHfHk-T43LtUOkeB_cAGos8";
+const YouTubeAPIKEY = process.env.REACT_APP_YOUTUBEKEY;
 const YouTubeUrl = "https://www.googleapis.com/youtube/v3";
 
-const newsAPIKey = "26990e3002fe46d0a2dd9580dbf8c38a";
+const newsAPIKey = process.env.REACT_APP_NEWSKEY;
 const newsBaseURL = "https://newsapi.org";
 const newsEndPoint = "/v2/top-headlines";
+
+console.log(process.env.REACT_APP_YOUTUBEKEY);
 
 const countries = ["us", "au", "ca"];
 const randomCountry = countries[Math.floor(Math.random() * countries.length)];
