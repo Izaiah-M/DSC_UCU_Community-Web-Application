@@ -19,6 +19,14 @@ import { useState } from "react";
 import img3 from "../../images/joshua-aragon-EaB4Ml7C7fE-unsplash.jpg";
 import img4 from "../../images/kaitlyn-baker-vZJdYl5JVXY-unsplash.jpg";
 import img5 from "../../images/james-harrison-UVMPVIRCF5w-unsplash.jpg";
+
+import will from "../../images/will.jpg";
+import nkata from "../../images/nkata.jpg";
+import isaac from "../../images/isaac.jpg";
+
+import lee from "../../images/Peter Lee.jpg";
+import moga from "../../images/Moga.jpg";
+
 import { Footer } from "./Footer";
 
 export function LandingPage() {
@@ -31,32 +39,32 @@ export function LandingPage() {
     {
       name: "Izaiah Mukisa",
       img: img4,
-      role: "Tech lead",
+      role: "Club lead",
     },
     {
-      name: "Izaiah Mukisa",
-      img: img4,
-      role: "Event Coordinator",
+      name: "Arou Isaac",
+      img: isaac,
+      role: "Technical Lead",
     },
     {
-      name: "Izaiah Mukisa",
-      img: img4,
-      role: "Marketing Lead",
+      name: "Moga Adbul",
+      img: moga,
+      role: "Mentorship lead",
     },
     {
-      name: "Izaiah Mukisa",
-      img: img4,
-      role: "Mentorship Lead",
-    },
-    {
-      name: "Izaiah Mukisa",
-      img: img4,
+      name: "Conrad William",
+      img: will,
       role: "Design Lead",
     },
     {
-      name: "Izaiah Mukisa",
-      img: img4,
+      name: "Nkata Joshua",
+      img: nkata,
       role: "Outreach Lead",
+    },
+    {
+      name: "Peter Lee",
+      img: lee,
+      role: "Back End Dev",
     },
   ];
 
