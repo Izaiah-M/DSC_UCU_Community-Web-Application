@@ -3,8 +3,9 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { createContext, useState } from "react";
-import { auth } from "../utils/Firebase";
+import { auth, db } from "../utils/Firebase";
 
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 // creating an auth context
 const Context = createContext();
 
@@ -26,6 +27,22 @@ function AuthContextProvider({ children }) {
   const signUp = (email, password) => {
     // creating a user to our firebase
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // Handling admin sign in
+  const adminSignIn = async (email, password) => {
+    // Check if email and password match the default admin's credentials
+    if (email === "imukisa024@gmail.com" && password === "#Admin123") {
+      // Get the user document from Firestore
+      const userRef = doc(db, "users", auth.currentUser.uid);
+      const userDoc = await getDoc(userRef);
+
+      // Set the "isAdmin" field to true in Firestore
+      await updateDoc(userRef, { isAdmin: true });
+
+      // Set the current user's "isAdmin" field to true in state
+      setCurrentUser({ ...currentUser, isAdmin: true });
+    }
   };
 
   const logIn = async (email, password) => {
