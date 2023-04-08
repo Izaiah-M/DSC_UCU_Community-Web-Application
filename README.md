@@ -18,11 +18,11 @@ JavaScript
 
 ## APIs Used to achieve this functionality
 
-YoutubeAPI: https://www.googleapis.com/youtube/v3
+YoutubeAPI: https://www.googleapis.com/youtube/v3 ()
 
 newsAPI: https://newsapi.org
 
-jsearch(for the careers functionality): https://jsearch.p.rapidapi.com/search
+jsearch(for the careers functionality): https://jsearch.p.rapidapi.com/search (Get keys from rapidapi.com)
 
 And lastly the firebase API
 
