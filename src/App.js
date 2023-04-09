@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import { LandingPage } from "./components/LandingPage/LandingPage";
