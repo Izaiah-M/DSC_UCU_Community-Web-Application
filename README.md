@@ -12,9 +12,7 @@ Notifications for new member registrations
 
 ## Technologies Used
 
-HTML
-CSS
-JavaScript
+-ReactJs
 
 ## APIs Used to achieve this functionality
 
